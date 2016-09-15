@@ -1,0 +1,29 @@
+
+<div>
+  Search: <input type="text" #searchTerm (keyup)="search(searchTerm.value)" />
+</div>
+
+<h3>{{ resources.length }}</h3>
+
+<div *ngFor="let resource of resources">
+  <h2>{{ resource.name }}</h2>
+  <h3>Score: <span>{{ resource.score }}</span></h3>
+  <ul>
+    <li *ngFor="let contributor of resource.contributors">
+      {{ contributor.role.name }}: {{ contributor.contributor.fullName }}
+    </li>
+  </ul>
+  <p>
+    <a href="{{ resource.url }}">{{ resource.url }}</a>
+  </p>
+  <p>
+    {{ resource.description }}
+  </p>
+  <p>
+    Added by: {{ resource.addedByUser.username }}
+  </p>
+  <p>
+    <a href="#">Vote Down</a>
+    <a href="#">Vote Up</a>
+  </p>
+</div>

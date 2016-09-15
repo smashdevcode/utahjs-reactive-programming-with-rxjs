@@ -1,0 +1,47 @@
+
+<form [formGroup]="resourceForm">
+  <div>
+    <label>Name</label>
+    <input formControlName="name" />
+  </div>
+  <div>
+    <label>Description</label>
+    <input formControlName="description" />
+  </div>
+  <div>
+    <label>Url</label>
+    <input formControlName="url" />
+  </div>
+  <div formArrayName="contributors">
+    <fieldset [formGroupName]="i" *ngFor="let contributor of resourceForm.controls.contributors.controls; let i = index">
+      <div>
+        <h3>Contributor {{ i + 1 }}</h3>
+        <div *ngIf="resourceForm.controls.contributors.controls.length > 1">
+          <button (click)="removeContributor(i)">Remove</button>
+        </div>
+      </div>
+      <div>
+        <label>Contributor</label>
+        <select formControlName="contributorId">
+          <option></option>
+          <option value="1">Scott Hanselman</option>
+          <option value="2">James Churchill</option>
+        </select>
+      </div>
+      <div>
+        <label>Role</label>
+        <select formControlName="roleId">
+          <option></option>
+          <option value="1">Author</option>
+        </select>
+      </div>
+    </fieldset>
+  </div>
+  <div>
+    <button (click)="addContributor()">Add Contributor</button>
+  </div>
+  <div>
+    <button (click)="addResource()">Add Resource</button>
+    <button type="button" (click)="cancel()">Cancel</button>
+  </div>
+</form>

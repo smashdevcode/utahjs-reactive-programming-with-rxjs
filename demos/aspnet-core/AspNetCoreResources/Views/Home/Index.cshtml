@@ -1,0 +1,36 @@
+﻿@model List<AspNetCoreResources.Models.Resource>
+
+@{ 
+    ViewBag.Title = "Resources";
+}
+
+<div>
+    <a asp-action="Add" asp-controller="Resources">Add Resource</a>
+</div>
+
+@foreach (var resource in Model)
+{
+    <div>
+        <h2>@resource.Name</h2>
+        <h3>Score: <span id="@($"Resource_{resource.Id}_Score")">@resource.Score</span></h3>
+        <ul>
+            @foreach (var contributor in resource.Contributors)
+            {
+                <li>@contributor.Role.Name: @contributor.Contributor.FullName</li>
+            }
+        </ul>
+        <p>
+            <a href="@resource.Url">@resource.Url</a>
+        </p>
+        <p>
+            @resource.Description
+        </p>
+        <p>
+            Added by: @resource.AddedByUser.Username
+        </p>
+        <p>
+            <a href="#" onclick="return aspNetCoreResources.voteDown(@resource.Id)">Vote Down</a>
+            <a href="#" onclick="return aspNetCoreResources.voteUp(@resource.Id)">Vote Up</a>
+        </p>
+    </div>
+}

@@ -1,0 +1,45 @@
+﻿@model AspNetCoreResources.ViewModels.ResourcesAddViewModel
+
+@{ 
+    ViewBag.Title = "Add Resource";
+}
+
+<form method="post">
+
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+    </div>
+
+    <div>
+        <label asp-for="Description"></label>
+        <input asp-for="Description" />
+    </div>
+
+    <div>
+        <label asp-for="Url"></label>
+        <input asp-for="Url" />
+    </div>
+
+    <div>
+        <label asp-for="ContributorId"></label>
+        <select asp-for="ContributorId" asp-items="Model.Contributors">
+            <option></option>
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="RoleId"></label>
+        <select asp-for="RoleId" asp-items="Model.Roles">
+            <option></option>
+        </select>
+    </div>
+
+    <div>
+        <button>Add Resource</button>
+        <a asp-action="Index" asp-controller="Home">Cancel</a>
+    </div>
+
+</form>
