@@ -8,8 +8,8 @@ Spend < 10 minutes on each section
 
 ## Prep
 
-* Disable all notifications
-* Disable power settings on both notebooks
+* Disable notifications
+* Disable power settings
 * Open Excel spreadsheet
 * Copy demos to the desktop
 * Observables and Operators demo
