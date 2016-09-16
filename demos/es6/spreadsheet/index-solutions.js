@@ -8,8 +8,8 @@
 // const c = document.querySelector('#c');
 
 // function handleBlurEvent() {
-//   const aValue = Number.parseFloat(a.value);
-//   const bValue = Number.parseFloat(b.value);
+//   const aValue = parseFloat(a.value);
+//   const bValue = parseFloat(b.value);
 
 //   let cValue = '';
 //   if (!(isNaN(aValue) || isNaN(bValue))) {
@@ -36,11 +36,11 @@
 // }
 
 // a.addEventListener('blur', evt => {
-//   aValue = Number.parseFloat(evt.srcElement.value);
+//   aValue = parseFloat(evt.srcElement.value);
 //   calculate();
 // });
 // b.addEventListener('blur', evt => {
-//   bValue = Number.parseFloat(evt.srcElement.value);  
+//   bValue = parseFloat(evt.srcElement.value);  
 //   calculate();
 // });
 
@@ -51,7 +51,7 @@
 // const c = document.querySelector('#c');
 
 // const operators = obs => obs
-//   .map(v => Number.parseFloat(v.srcElement.value));
+//   .map(v => parseFloat(v.srcElement.value));
 
 // const aValues = Rx.Observable.fromEvent(a, 'blur').let(operators);
 // const bValues = Rx.Observable.fromEvent(b, 'blur').let(operators);
@@ -68,7 +68,7 @@
 // const c = document.querySelector('#c');
 
 // const operators = obs => obs
-//   .map(v => Number.parseFloat(v.srcElement.value))
+//   .map(v => parseFloat(v.srcElement.value))
 //   .debounceTime(500);
 
 // const aValues = Rx.Observable.fromEvent(a, 'keyup').let(operators);

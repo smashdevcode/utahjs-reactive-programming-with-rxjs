@@ -3,23 +3,13 @@
 
 ## The Spreadsheet as a Reactive Program
 
-[Show empty file in Visual Studio Code]
-
-In a typical imperative program, if we assign `a = 2` and `b = 3` and then assign `c` to be the sum of `a` and `b`, `c` would be equal to `5`. And then we could change the value of either `a` or `b`, and `c` would continue to be equal to `5`.
-
-```
-let a = 2;
-let b = 3;
-let c = a + b;
-```
-
-Let's look at an example that I'm sure all of you are familiar with: the spreadsheet.
-
 [Show Excel]
 
-But a typical spreadsheet program behaves differently. If we set column `a` to `2`, column `b` to `3`, and column `c` to the sum of `a` and `b`, changing the value of either column `a` or `b` will cause the value of `c` to update. Column `c` is an expression of the current state; if the state is changed, then the new state is propagated or pushed to column `c` so that it can update its contents. You could say that column `c` is listening for updates to columns `a` and `b`. That it's an observer who has subscribed to changes from the observable columns `a` and `b`.
+If we set column `a` to `2`, column `b` to `3`, and column `c` to the sum of `a` and `b`, changing the value of either column `a` or `b` will cause the value of `c` to update. Column `c` is an expression of the current state; if the state is changed, then the new state is propagated or pushed to column `c` so that it can update its contents. You could say that column `c` is listening for updates to columns `a` and `b`. That it's an observer who has subscribed to changes from the observable columns `a` and `b`.
 
-So, this spreadsheet is a really, really basic example of Reactive Programming. Columns `a` and `b` would represent "Observables" and column `c` would represent an "Observer" or "Subscriber".
+So, this spreadsheet is a really, really basic example of reactive programming. Columns `a` and `b` would represent "Observables" and column `c` would represent an "Observer" or "Subscriber".
+
+Let’s us RxJS and Observables to create our first asynchronous event stream.
 
 ## Observables and Operators
 
@@ -37,7 +27,7 @@ const b = document.querySelector('#b');
 const c = document.querySelector('#c');
 
 const operators = obs => obs
-  .map(v => Number.parseFloat(v.srcElement.value));
+  .map(v => parseFloat(v.srcElement.value));
 
 const aValues = Rx.Observable.fromEvent(a, 'blur').let(operators);
 const bValues = Rx.Observable.fromEvent(b, 'blur').let(operators);
@@ -92,18 +82,6 @@ this.term.valueChanges
     }
   );
 ```
-
-
-
-
-
-TODO Show how `switchMap` can help
-  Add delay to the service method
-  Switch to switchMap
-
-
-
-
 
 ## Wrap Up
 

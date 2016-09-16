@@ -1,4 +1,16 @@
 
+## The Spreadsheet as a Reactive Program
+
+[Show empty file in Visual Studio Code]
+
+In a typical imperative program, if we assign `a = 2` and `b = 3` and then assign `c` to be the sum of `a` and `b`, `c` would be equal to `5`. And then we could change the value of either `a` or `b`, and `c` would continue to be equal to `5`.
+
+```
+let a = 2;
+let b = 3;
+let c = a + b;
+```
+
 ### `of` Operator
 
 In RxJS, the Observable object represents a push based collection. Let's create a simple Observable object.

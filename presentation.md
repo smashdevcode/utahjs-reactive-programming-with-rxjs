@@ -1,12 +1,21 @@
 
 # Presentation
 
+
+
+
+Style app
+
+Add resources to my blog???
+
+
+
+
 ## Prep
 
 * Disable all notifications
 * Disable power settings on both notebooks
 * Open Excel spreadsheet
-* Open blank file in VS Code
 * Copy demos to the desktop
 * Observables and Operators demo
  * Open terminal to the demo folder
@@ -31,13 +40,13 @@ Hi there! My name is James. I’m happy to be here today to talk with you all ab
 
 ## What is Reactive Programming?
 
-So let’s start right off by asking what is Reactive Programming?
+Let’s start right off by asking "What is Reactive Programming?"
 
 There are a lot of different definitions out there, some helpful, some less helpful.
 
-[Next slide]
-
 Personally, I like how Andre Staltz defines it:
+
+[Next slide]
 
 _"Reactive programming is programming with asynchronous data streams." -- The introduction to Reactive Programming you've been missing by Andre Staltz_
 
@@ -47,6 +56,8 @@ He goes on to say that this isn't really a new idea. And he's right. Mouse or ke
 
 ## Demos
 
+Let's look at an every day example of reactive programming: the spreadsheet.
+
 [Switch to demos.md file]
 
 [Switch to slides]
@@ -55,9 +66,7 @@ He goes on to say that this isn't really a new idea. And he's right. Mouse or ke
 
 ## Resources
 
-### RxJS 5
-
-When you’re searching for resources online, be sure that you’re looking at RxJS 5 resources. RxJS 4 is similar, but not the same.
+Here are some great resources for learning more about reactive programming and RxJS.
 
 ### ReactiveX Website
 
@@ -78,10 +87,6 @@ Great introduction to reactive programming using RxJS 4.
 ### Egghead.io
 
 Egghead has video courses from Ben Lesh and Andre Staltz.
-
-### Anything by Ben Lesh, Andre Staltz, and Rob Wormald
-
-Really anything by Ben Lesh, Andre Staltz, and Rob Wormald
 
 ## Thanks!
 

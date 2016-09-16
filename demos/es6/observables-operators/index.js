@@ -21,34 +21,16 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-// `of` Operator
+// `interval` Operator
 ////////////////////////////////////////////////////////////////////////////////////////
 
-// const obs = Rx.Observable.of(1, 2, 3, 4, 5);
+// Example 1: `interval` operator
 
-// obs.subscribe((v) => console.log(v));
+// const obs = Rx.Observable.interval(1000);
 
+// obs.subscribe(v => console.log(v));
 
-////////////////////////////////////////////////////////////////////////////////////////
-// Observer `next` Method
-////////////////////////////////////////////////////////////////////////////////////////
-
-// const obs = Rx.Observable.create(observer => {
-//   observer.next(1);
-//   observer.next(2);
-//   observer.next(3);
-//   observer.next(4);
-//   observer.next(5);
-// });
-
-// obs.subscribe((v) => console.log(v));
-
-// TODO Show that we can add more than one subscriber
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-// Observer `complete` and `error` Methods
-////////////////////////////////////////////////////////////////////////////////////////
+// Example 2: Observer object
 
 // const observer = {
 //   next: v => console.log(v),
@@ -56,31 +38,16 @@
 //   complete: () => console.log('Done')
 // };
 
-// const obs = Rx.Observable.create(observer => {
-//   observer.next(1);
-//   observer.next(2);
-//   observer.next(3);
-//   // observer.error(Error('An error has occurred'));
-//   observer.next(4);
-//   observer.next(5);
-//   observer.complete();
-//   observer.next(6);
-// });
-
-// obs.subscribe(
-//   v => console.log(v),
-//   err => console.error(err),
-//   () => console.log('Done')  
-// );
+// const obs = Rx.Observable.interval(1000);
 
 // obs.subscribe(observer);
 
-// TODO Show the two different ways that we can pass the next, error, and complete functions
-// TODO Show what happens when an error is thrown
+// TODO Show that we can add more than one subscriber
+// TODO Point out that the Observable never stops producing values
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-// Cold Observables
+// Subscriptions and `unsubscribe`
 ////////////////////////////////////////////////////////////////////////////////////////
 
 // const observer = {
@@ -89,19 +56,28 @@
 //   complete: () => console.log('Done')
 // };
 
-// const obs = Rx.Observable.create(observer => {
-//   console.log('Sending values');
-//   observer.next(1);
-//   observer.next(2);
-//   observer.next(3);
-//   observer.next(4);
-//   observer.next(5);
-//   observer.complete();
-// });
+// const obs = Rx.Observable.interval(1000);
+
+// const sub = obs.subscribe(observer);
 
 // setTimeout(() => {
-//   obs.subscribe(observer);
+//   sub.unsubscribe();
 // }, 5000);
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+// `fromEvent` Operator
+////////////////////////////////////////////////////////////////////////////////////////
+
+// const observer = {
+//   next: v => console.log(v),
+//   error: err => console.error(err),
+//   complete: () => console.log('Done')
+// };
+
+// const obs = Rx.Observable.fromEvent(document, 'mousemove');
+
+// const sub = obs.subscribe(observer);
 
 
 //
@@ -128,10 +104,10 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-// `interval` Operator
+// Transformation and Filtering Operators
 ////////////////////////////////////////////////////////////////////////////////////////
 
-// Example 1: `interval` operator
+// Example 1: `map` and `filter` operators
 
 // const observer = {
 //   next: v => console.log(v),
@@ -139,71 +115,56 @@
 //   complete: () => console.log('Done')
 // };
 
-// const obs = Rx.Observable.interval(1000);
+// const obs = Rx.Observable.interval(200)
+//   .map(v => v * 2)
+//   .filter(v => v % 7 === 0);
 
 // obs.subscribe(observer);
 
-// Example 2: Using `create`
+// Example 2: Pure functions
 
-// const observer = {
-//   next: v => console.log(v),
-//   error: err => console.error(err),
-//   complete: () => console.log('Done')
-// };
+// const obs1 = Rx.Observable.interval(200);
 
-// const obs = Rx.Observable.create(observer => {
-//   let value = 0;
-//   setInterval(() => {
-//     observer.next(value);
-//     value++;
-//   }, 1000);
-// });
+// const obs2 = obs1
+//   .map(v => v * 2)
+//   .filter(v => v % 7 === 0);
 
-// obs.subscribe(observer);
-
-// TODO Point out that the Observable never stops producing values
+// obs1.subscribe(v => console.log(`Obs1: ${v}`));
+// obs2.subscribe(v => console.log(`Obs2: ${v}`));
 
 
-////////////////////////////////////////////////////////////////////////////////////////
-// Subscriptions and `unsubscribe`
-////////////////////////////////////////////////////////////////////////////////////////
-
-// const observer = {
-//   next: v => console.log(v),
-//   error: err => console.error(err),
-//   complete: () => console.log('Done')
-// };
-
-// const obs = Rx.Observable.create(observer => {
-//   let value = 0;
-//   setInterval(() => {
-//     observer.next(value);
-//     value++;
-//   }, 1000);
-// });
-
-// const sub = obs.subscribe(observer);
-
-// setTimeout(() => {
-//   sub.unsubscribe();
-// }, 5000);
-
-// TODO Make sure that the timer actually stops
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-// `fromEvent` Operator
-////////////////////////////////////////////////////////////////////////////////////////
-
-// const observer = {
-//   next: v => console.log(v),
-//   error: err => console.error(err),
-//   complete: () => console.log('Done')
-// };
-
-// const obs = Rx.Observable.fromEvent(document, 'mousemove');
-
-// const sub = obs.subscribe(observer);
+//
+// Yoda by Blazej Kozlowski & Faux_Pseudo
+//                     ____
+//                  _.' :  `._
+//              .-.'`.  ;   .'`.-.
+//     __      / : ___\ ;  /___ ; \      __
+//   ,'_ ""--.:__;".-.";: :".-.":__;.--"" _`,
+//   :' `.t""--.. '<@.`;_  ',@>` ..--""j.' `;
+//        `:-.._J '-.-'L__ `-- ' L_..-;'
+//          "-.__ ;  .-"  "-.  : __.-"
+//              L ' /.------.\ ' J
+//               "-.   "--"   .-"
+//              __.l"-:_JL_;-";.__
+//           .-j/'.;  ;""""  / .'\"-.
+//         .' /:`. "-.:     .-" .';  `.
+//      .-"  / ;  "-. "-..-" .-"  :    "-.
+//   .+"-.  : :      "-.__.-"      ;-._   \
+//   ; \  `.; ;                    : : "+. ;
+//   :  ;   ; ;                    : ;  : \:
+//  : `."-; ;  ;                  :  ;   ,/;
+//   ;    -: ;  :                ;  : .-"'  :
+//   :\     \  : ;             : \.-"      :
+//    ;`.    \  ; :            ;.'_..--  / ;
+//    :  "-.  "-:  ;          :/."      .'  :
+//      \       .-`.\        /t-""  ":-+.   :
+//       `.  .-"    `l    __/ /`. :  ; ; \  ;
+//         \   .-" .-"-.-"  .' .'j \  /   ;/
+//          \ / .-"   /.     .'.' ;_:'    ;
+//           :-""-.`./-.'     /    `.___.'
+//                 \ `t  ._  /  bug :F_P:
+//                  "-.t-._:'
+//
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -269,220 +230,6 @@
 // const obs = obs2.withLatestFrom(obs1);
 
 // obs.subscribe(observer);
-
-
-//
-// Yoda by Blazej Kozlowski & Faux_Pseudo
-//                     ____
-//                  _.' :  `._
-//              .-.'`.  ;   .'`.-.
-//     __      / : ___\ ;  /___ ; \      __
-//   ,'_ ""--.:__;".-.";: :".-.":__;.--"" _`,
-//   :' `.t""--.. '<@.`;_  ',@>` ..--""j.' `;
-//        `:-.._J '-.-'L__ `-- ' L_..-;'
-//          "-.__ ;  .-"  "-.  : __.-"
-//              L ' /.------.\ ' J
-//               "-.   "--"   .-"
-//              __.l"-:_JL_;-";.__
-//           .-j/'.;  ;""""  / .'\"-.
-//         .' /:`. "-.:     .-" .';  `.
-//      .-"  / ;  "-. "-..-" .-"  :    "-.
-//   .+"-.  : :      "-.__.-"      ;-._   \
-//   ; \  `.; ;                    : : "+. ;
-//   :  ;   ; ;                    : ;  : \:
-//  : `."-; ;  ;                  :  ;   ,/;
-//   ;    -: ;  :                ;  : .-"'  :
-//   :\     \  : ;             : \.-"      :
-//    ;`.    \  ; :            ;.'_..--  / ;
-//    :  "-.  "-:  ;          :/."      .'  :
-//      \       .-`.\        /t-""  ":-+.   :
-//       `.  .-"    `l    __/ /`. :  ; ; \  ;
-//         \   .-" .-"-.-"  .' .'j \  /   ;/
-//          \ / .-"   /.     .'.' ;_:'    ;
-//           :-""-.`./-.'     /    `.___.'
-//                 \ `t  ._  /  bug :F_P:
-//                  "-.t-._:'
-//
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-// Transformation and Filtering Operators
-////////////////////////////////////////////////////////////////////////////////////////
-
-// Example 1: `map` and `filter` operators
-
-// const observer = {
-//   next: v => console.log(v),
-//   error: err => console.error(err),
-//   complete: () => console.log('Done')
-// };
-
-// const obs = Rx.Observable.interval(200)
-//   .map(v => v * 2)
-//   .filter(v => v % 7 === 0);
-
-// obs.subscribe(observer);
-
-// Example 2: Pure functions
-
-// const observer = {
-//   next: v => console.log(v),
-//   error: err => console.error(err),
-//   complete: () => console.log('Done')
-// };
-
-// const obs1 = Rx.Observable.interval(200);
-
-// const obs2 = obs1
-//   .map(v => v * 2)
-//   .filter(v => v % 7 === 0);
-
-// obs1.subscribe(observer);
-// obs2.subscribe(observer);
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-// Error Handling
-////////////////////////////////////////////////////////////////////////////////////////
-
-// const observer = {
-//   next: v => console.log(v),
-//   error: err => console.error(err),
-//   complete: () => console.log('Done')
-// };
-
-// const obs = Rx.Observable.create(observer => {
-//   let value = 0;
-//   const interval = setInterval(() => {
-//     if (value < 5) {
-//       observer.next(value);
-//       value++;
-//     } else {
-//       observer.error(Error());
-//     }
-//   }, 500);
-
-//   return () => clearInterval(interval);
-// });
-
-// obs.retry(2).subscribe(observer);
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-// Shared vs Not-Shared
-////////////////////////////////////////////////////////////////////////////////////////
-
-// Example 1: Shared data streams?
-
-// const observer = {
-//   next: v => console.log(v),
-//   error: err => console.error(err),
-//   complete: () => console.log('Done')
-// };
-
-// const obs = Rx.Observable.fromEvent(document, 'click');
-
-// obs.subscribe(observer);
-// obs.subscribe(observer);
-
-// Example 2: Another look
-
-// const observer = {
-//   next: v => console.log(v),
-//   error: err => console.error(err),
-//   complete: () => console.log('Done')
-// };
-
-// const obs = Rx.Observable.fromEvent(document, 'click')
-//   .map(v => Math.random());
-
-// obs.subscribe(observer);
-// obs.subscribe(observer);
-
-// Example 3: The fix
-
-// const observer = {
-//   next: v => console.log(v),
-//   error: err => console.error(err),
-//   complete: () => console.log('Done')
-// };
-
-// const obs = Rx.Observable.fromEvent(document, 'click')
-//   .map(v => Math.random())
-//   .share();
-
-// obs.subscribe(observer);
-// obs.subscribe(observer);
-
-
-//
-//               _______
-//          ..-'`       ````---.
-//        .'          ___ .'````.'SS'.
-//       /        ..-SS####'.  /SSHH##'.
-//      |       .'SSSHHHH##|/#/#HH#H####'.
-//     /      .'SSHHHHH####/||#/: \SHH#####\
-//    /      /SSHHHHH#####/!||;`___|SSHH###\
-// -..__    /SSSHHH######.         \SSSHH###\
-// `.'-.''--._SHHH#####.'           '.SH####/
-//   '. ``'-  '/SH####`/_             `|H##/
-//   | '.     /SSHH###|`'==.       .=='/\H|
-//   |   `'-.|SHHHH##/\__\/        /\//|~|/
-//   |    |S#|/HHH##/             |``  |
-//   |    \H' |H#.'`              \    |
-//   |        ''`|               -     /
-//   |          /H\          .----    /
-//   |         |H#/'.           `    /
-//   |          \| | '..            /
-//   |    ^~DLF   /|    ''..______.'
-//    \          //\__    _..-. | 
-//     \         ||   ````     \ |_
-//      \    _.-|               \| |_
-//      _\_.-'   `'''''-.        |   `--.
-//  ''``    \            `''-;    \ /
-//           \      .-'|     ````.' -
-//           |    .'  `--'''''-.. |/
-//           |  .'               \|
-//           |.'
-//
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-// Observables and Promises
-////////////////////////////////////////////////////////////////////////////////////////
-
-// Example 1: `toPromise` operator
-
-// const observer = {
-//   next: v => console.log(v),
-//   error: err => console.error(err),
-//   complete: () => console.log('Done')
-// };
-
-// const obs = Rx.Observable.interval(100).take(5);
-
-// const promise = obs.toPromise();
-
-// obs.subscribe(v => console.log(`From Observable: ${v}`));
-// promise.then(v => console.log(`From Promise: ${v}`));
-
-// Example 2: `fromPromise` operator
-
-// const observer = {
-//   next: v => console.log(v),
-//   error: err => console.error(err),
-//   complete: () => console.log('Done')
-// };
-
-// const promise = new Promise((resolve) => {
-//   setTimeout(() => {
-//     resolve('Hello from Promise!');
-//   }, 5000);
-// });
-
-// const obs = Rx.Observable.fromPromise(promise);
-
-// obs.subscribe(v => console.log(`From Observable: ${v}`));
 
 
 //  _________  ___  ___  _______           _______   ________   ________     
