@@ -21,6 +21,34 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
+// RxJS Observables and Operators
+////////////////////////////////////////////////////////////////////////////////////////
+
+// 1) `interval` operator
+// 2) Adding multiple subscribers
+// 3) Subscriptions and unsubscribing
+// 4) `map` and `filter` operators
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
 // `interval` Operator
 ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -209,8 +237,10 @@
 //   complete: () => console.log('Done')
 // };
 
-// const obs1 = Rx.Observable.interval(1000);
-// const obs2 = Rx.Observable.interval(2000);
+// const obs1 = Rx.Observable.interval(1000)
+//   .map(v => `Obs1: ${v}`);
+// const obs2 = Rx.Observable.interval(2000)
+//   .map(v => `Obs2: ${v}`);
 
 // const obs = Rx.Observable.merge(obs1, obs2);
 

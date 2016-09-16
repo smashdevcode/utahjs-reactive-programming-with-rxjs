@@ -1,12 +1,13 @@
 
 # Presentation
 
-
-
+Spend < 10 minutes on each section
+  Intro
+  Spreadsheet
+  Angular 2
 
 Style app
 
-Add resources to my blog???
 
 
 

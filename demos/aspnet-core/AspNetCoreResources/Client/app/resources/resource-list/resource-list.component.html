@@ -3,7 +3,7 @@
   Search: <input type="text" #searchTerm (keyup)="search(searchTerm.value)" />
 </div>
 
-<h3>{{ (resources | async)?.length }}</h3>
+<h3># of Resources: {{ (resources | async)?.length }}</h3>
 
 <div *ngFor="let resource of resources | async">
   <h2>{{ resource.name }}</h2>
