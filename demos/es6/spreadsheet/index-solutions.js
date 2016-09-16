@@ -46,20 +46,23 @@
 
 // RxJS Version #1
 
+
 // const a = document.querySelector('#a');
 // const b = document.querySelector('#b');
 // const c = document.querySelector('#c');
 
-// const operators = obs => obs
-//   .map(v => parseFloat(v.srcElement.value));
+// const ops = obs => obs
+//   .map(v => v.srcElement.value)
+//   .map(v => parseFloat(v));
 
-// const aValues = Rx.Observable.fromEvent(a, 'blur').let(operators);
-// const bValues = Rx.Observable.fromEvent(b, 'blur').let(operators);
+// const aValues = Rx.Observable.fromEvent(a, 'blur').let(ops);
+// const bValues = Rx.Observable.fromEvent(b, 'blur').let(ops);
 
-// const obs = Rx.Observable.combineLatest(aValues, bValues, 
-//   (a, b) => (!(isNaN(a) || isNaN(b))) ? (a + b) : '');
+// const cValues = Rx.Observable
+//   .combineLatest(aValues, bValues, (a, b) => a + b)
+//   .map(v => isNaN(v) ? '' : v);
 
-// obs.subscribe(v => c.value = v);
+// cValues.subscribe(v => c.value = v);
 
 // RxJS Version #2
 
@@ -67,14 +70,16 @@
 // const b = document.querySelector('#b');
 // const c = document.querySelector('#c');
 
-// const operators = obs => obs
-//   .map(v => parseFloat(v.srcElement.value))
+// const ops = obs => obs
+//   .map(v => v.srcElement.value)
+//   .map(v => parseFloat(v))
 //   .debounceTime(500);
 
-// const aValues = Rx.Observable.fromEvent(a, 'keyup').let(operators);
-// const bValues = Rx.Observable.fromEvent(b, 'keyup').let(operators);
+// const aValues = Rx.Observable.fromEvent(a, 'keyup').let(ops);
+// const bValues = Rx.Observable.fromEvent(b, 'keyup').let(ops);
 
-// const obs = Rx.Observable.combineLatest(aValues, bValues, 
-//   (a, b) => (!(isNaN(a) || isNaN(b))) ? (a + b) : '');
+// const cValues = Rx.Observable
+//   .combineLatest(aValues, bValues, (a, b) => a + b)
+//   .map(v => isNaN(v) ? '' : v);
 
-// obs.subscribe(v => c.value = v);
+// cValues.subscribe(v => c.value = v);
