@@ -6,12 +6,6 @@ Spend < 10 minutes on each section
   Spreadsheet
   Angular 2
 
-Style app
-
-
-
-
-
 ## Prep
 
 * Disable all notifications
@@ -88,6 +82,10 @@ Great introduction to reactive programming using RxJS 4.
 ### Egghead.io
 
 Egghead has video courses from Ben Lesh and Andre Staltz.
+
+### UtahJS
+
+The next speaker in this room, Jeremy Lund, is going to present a talk titled “Reactive Programming using Observables”. So stay right here if you want to learn more about reactive programming.
 
 ## Thanks!
 
