@@ -1,13 +1,17 @@
 
-<div>
+<div class="search">
   Search: <input type="text" #searchTerm (keyup)="search(searchTerm.value)" />
 </div>
 
 <h3># of Resources: {{ (resources | async)?.length }}</h3>
 
-<div *ngFor="let resource of resources | async">
+<div *ngFor="let resource of resources | async" class="resource">
+  <div class="voting">
+    <h3>Score: <span>{{ resource.score }}</span></h3>
+    <a href="#">Vote Down</a>
+    <a href="#">Vote Up</a>
+  </div>
   <h2>{{ resource.name }}</h2>
-  <h3>Score: <span>{{ resource.score }}</span></h3>
   <ul>
     <li *ngFor="let contributor of resource.contributors">
       {{ contributor.role.name }}: {{ contributor.contributor.fullName }}
@@ -21,9 +25,5 @@
   </p>
   <p>
     Added by: {{ resource.addedByUser.username }}
-  </p>
-  <p>
-    <a href="#">Vote Down</a>
-    <a href="#">Vote Up</a>
   </p>
 </div>
