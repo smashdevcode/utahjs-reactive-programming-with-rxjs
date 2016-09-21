@@ -1,0 +1,23 @@
+
+body {
+  font-family: sans-serif;
+}
+
+.search {
+  padding: 20px;
+  font-size: 18px;
+}
+
+.search input {
+  font-size: 18px;  
+}
+
+.resource {
+  margin: 5px;
+  padding: 10px;
+  border: solid 1px #000;
+}
+
+.resource .voting {
+  float: right;
+}

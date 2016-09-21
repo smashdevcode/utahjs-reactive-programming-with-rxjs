@@ -25,7 +25,6 @@ Spend < 10 minutes on each section
  * Open the project in VS Code
  * Start the dotnet host
  * Start webpack in watch mode
-* Open demos.md on the Surface
 
 ## Reactive Programming with RxJS
 
